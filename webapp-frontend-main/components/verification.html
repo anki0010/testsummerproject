@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify Code</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <section class="container forms">
+        <div class="form verify">
+            <div class="form-content">
+                <header>Verify Your Email</header>
+                <form id="verification-form">
+                    <div class="field input-field">
+                        <input type="text" id="code" placeholder="Enter Verification Code" class="input" required>
+                    </div>
+                    <div class="field button-field">
+                        <button type="submit">Submit Code</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        document.getElementById('verification-form').addEventListener('submit', async function(event) {
+            event.preventDefault();
+
+            const code = document.getElementById('code').value;
+
+            try {
+                const response = await fetch('https://example.com/verify-code', { // Replace with your actual API endpoint
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ code }) // Send only the code
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    alert('Code verified successfully!');
+                    window.location.href = '/reset-password.html'; // Redirect to reset password page
+                } else {
+                    alert('Error: ' + data.message);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('An error occurred while verifying the code. Please try again.');
+            }
+        });
+    </script>
+</body>
+</html>

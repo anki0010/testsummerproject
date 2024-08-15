@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../assets/css/userprofile.css">
+    <title>Profile</title>
+</head>
+<body>
+    <section class="navbar">
+        <div>
+            <nav>
+                <h2>Share Sphere</h2>
+                <form class="search-bar">
+                    <div class="search-bar-input">
+                        <textarea placeholder="Search Anything.." rows="5" class="search-bar"></textarea>
+                        <button type="submit" class="btn btn-primary">Search</button>
+                    </div>
+                </form> 
+                <div class="wrapper">
+                    <input id="toggler" type="checkbox">
+                    <label for="toggler">
+                        <img src="../assets/images/profile-1.png" style="height: 40px; width: 50px;" alt="Dropdown">
+                    </label>
+                    <div class="dropdown">
+                        <a href="index.html" onclick="testGetUserInfo()">Home</a> 
+                        <a href="userprofile.html" onclick="testGetUserInfo()">View Profile</a>
+                        <a href="feedback.html">Feedback and Support</a>
+                        <a href="">Setting</a>
+                        <a href="login.html" id="authLink"></a>
+                    </div>
+                </div>
+                
+                <style>
+                .wrapper {
+                    position: relative;
+                    text-align: center;
+                }
+                input {
+                    opacity: 0;
+                    pointer-events: none;
+                    touch-action: none;
+                }
+                .dropdown {
+                    display: none;
+                    width: 300px;
+                    position: absolute;
+                    top: calc(100% + 10px);
+                    flex-direction: column;
+                    background-color: white;
+                    border: 1px solid white;
+                    padding: 20px;
+                    gap: 5px;
+                    right: 0;
+                }
+                input:checked ~ .dropdown {
+                    display: flex;
+                }
+                </style>
+            </nav>
+        </div>
+    </section>
+
+    <div>
+        <!-- Profile Section  -->
+        <div class="profile-container">
+            <div class="profile-details">
+                <div class="pd-left">
+                    <div class="pd-row">
+                        <img src="" class="pd-image" />
+                        <div>
+                            <h3>User A</h3>
+                            <p>Friends</p>
+                            <img src="" />
+                            <img src="" />
+                            <img src="" />
+                            <img src="" />
+                        </div>
+                    </div>
+                </div>
+                <div class="pd-right">
+                    <button type="button">
+                        <img src="" /> Message
+                    </button>
+                    <br />
+                    <a href=""><img src="" /></a>
+                </div>
+            </div>
+  
+            <!-- Profile Information  -->
+            <div class="profile-info">
+                <div class="info-col">
+                    <div class="profile-intro">
+                        <h3>Introduction</h3>
+                        <p class="profile-desc">
+                            I love taking pictures of sunsets and nature. #photography #nature
+                        </p>
+                        <hr />
+                    </div>
+  
+                    <div class="profile-intro">
+                        <div class="title-box">
+                            <h3>Photos</h3>
+                            <a href="#">All Photos</a>
+                        </div>
+                        <div class="photo-box">
+                            <div><img src="../assets/images/black.jpg" /></div>
+                            <div><img src="../assets/images/black.jpg" /></div>
+                            <div><img src="../assets/images/black.jpg" /></div>
+                            <div><img src="../assets/images/black.jpg" /></div>
+                            <div><img src="../assets/images/black.jpg" /></div>
+                            <div><img src="../assets/images/black.jpg" /></div>
+                        </div>
+                    </div>
+  
+                    <div class="profile-intro">
+                        <div class="title-box">
+                            <h3>Friends</h3>
+                            <a href="#">All Friends</a>
+                        </div>
+                        <p>100</p>
+                        <div class="friends-box">
+                            <div>
+                                <img src="../assets/images/black.jpg" />
+                            </div>
+                            <div>
+                                <img src="../assets/images/black.jpg" />
+                            </div>
+                            <div>
+                                <img src="../assets/images/black.jpg" />
+                            </div>
+                            <div>
+                                <img src="../assets/images/black.jpg" />
+                            </div>
+                            <div>
+                                <img src="../assets/images/black.jpg" />
+                            </div>
+                            <div>
+                                <img src="../assets/images/black.jpg" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="post-col">
+
+                </div>
+
+                <!-- Uploaded Posts Section  -->
+                <!-- Post 1  -->
+                <div class="post-container">
+                    <div class="post-row">
+                        <div class="user-profile">
+                            <img src="../assets/images/profile-1.png" />
+                            <div>
+                                <p>User A</p>
+                                <span>April 22, 2023</span>
+                            </div>
+                        </div>
+                        <a href="#"><i class="fa-solid fa-ellipsis-v"></i></a>
+                    </div>
+                    <p class="post-text">
+                        <span>Goodmorning! How are y'all?</span> 
+                        <a href="#">#good</a> <a href="#">#morning</a>
+                    </p>
+                    <img src="../assets/images/black.jpg" class="post-img" />
+
+                    <div class="post-row">
+                        <div class="activity-icons">
+                            <div><img src="../assets/images/like-blue.png" /> 15</div>
+                            <div><img src="../assets/images/comments.png" /> 5</div>
+                            <div><img src="../assets/images/share.png" /> 6</div>
+                        </div>
+                        <div class="post-profile-icon">
+                            <img src="../assets/images/profile-1.png" />
+                            <i class="fa-solid fa-caret-down"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Function to determine if user is logged in
+        function isLoggedIn() {
+            // Here you would check the user's login status.
+            // For this example, let's assume a simple check with localStorage.
+            return localStorage.getItem('loggedIn') === 'true';
+        }
+
+        // Function to update the authentication link based on login status
+        function updateAuthLink() {
+            const authLink = document.getElementById('authLink');
+            if (isLoggedIn()) {
+                authLink.textContent = 'Logout';
+                authLink.setAttribute('href', '#');
+                authLink.setAttribute('onclick', 'logOut()');
+            } else {
+                authLink.textContent = 'Login';
+                authLink.setAttribute('href', 'login.html');
+                authLink.removeAttribute('onclick');
+            }
+        }
+
+        // Function to handle logout
+        function logOut() {
+            // Log out logic here
+            localStorage.setItem('loggedIn', 'false');
+            updateAuthLink();
+            window.location.href = 'login.html';
+        }
+
+        // Initial call to update the authentication link when the page loads
+        updateAuthLink();
+    </script>
+</body>
+</html>
