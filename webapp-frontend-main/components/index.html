@@ -8,10 +8,9 @@
     <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" 
     integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" 
-    crossorigin="anonymous" referrerpolicy="no-referrer" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/typescript/4.4.3/typescript.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jwt-decode@3.1.2/build/jwt-decode.min.js"></script>
-
 </head>
 <body>
     <section class="navbar">
@@ -21,35 +20,35 @@
             </h2>
             <form class="search-bar">
                 <div class="search-bar-input">
-                  <textarea placeholder="Search Anything.." rows="5" class="search-bar"></textarea>
-                  <button type="submit" class="btn btn-primary">Search</button>
+                    <textarea placeholder="Search Anything.." rows="5" class="search-bar"></textarea>
+                    <button type="submit" class="btn btn-primary">Search</button>
                 </div>
                 <div class="results-container search-results"></div>
-              </form>
+            </form>
             <div class="wrapper">
                 <input id="toggler" type="checkbox">
                 <label for="toggler">
-                  <img src="../assets/images/profile-1.png" style="height: 40px; width: 50px;" alt="Dropdown">
+                    <img src="../assets/images/profile-1.png" style="height: 40px; width: 50px;" alt="Dropdown">
                 </label>
                 <div class="dropdown">
-                  <a href="userprofile.html" onclick="testGetUserInfo()">View Profile</a>
-                  <a href="feedback.html">Feedback and Support</a>
-                  <a href="userprofile.html">Setting</a>
-                  <a href="login.html" onclick="logOut()">Logout</a>
+                    <a href="userprofile.html" onclick="testGetUserInfo()">View Profile</a>
+                    <a href="feedback.html">Feedback and Support</a>
+                    <a href="userprofile.html">Setting</a>
+                    <a href="login.html" onclick="logOut()">Login</a>
                 </div>
-              </div>
-              
-              <style>
-              .wrapper {
+            </div>
+
+            <style>
+            .wrapper {
                 position: relative;
                 text-align: center;
-              }
-              input {
+            }
+            input {
                 opacity: 0;
                 pointer-events: none;
                 touch-action: none;
-              }
-              .dropdown {
+            }
+            .dropdown {
                 display: none;
                 width: 300px;
                 position: absolute;
@@ -60,21 +59,16 @@
                 padding: 10px;
                 gap: 7px;
                 right: 0;
-              }
-              input:checked ~ .dropdown {
+            }
+            input:checked ~ .dropdown {
                 display: flex;
-              }
-              </style>
-            </div>
-
-               <br><br>
-            
+            }
+            </style>
         </nav>
     </section>
     <main>
         <div class="container">
-            <!----=============== left ===============-->
-            
+            <!--=============== Left Section ===============-->
             <div>
                 <br>
                 <div class="left">
@@ -87,41 +81,46 @@
                         </div>
                     </a>
                 
-                    <!-----------sidebar----------->
+                    <!-- Sidebar -->
                     <div class="sidebar">
                         <a class="menu-item active">
                             <span><i class="fa-solid fa-house"></i></span><h3>Home</h3>
                         </a>
                     </div>
+                </div>
             </div>
-                
-            </div>
-            <!----=============== middle ===============-->
+            
+            <!--=============== Middle Section ===============-->
             <div class="middle">
-                
-                <!-- New Form -->
-                <form id="post-form">
-                    <div class="input-field">
-                        <textarea id="post-content" placeholder="What's on your mind?" required></textarea>
+                <!-- Post Form -->
+                <form class="create-post" id="post-form" onsubmit="return false;">
+                    <div class="profile-photo">
+                        <img src="../assets/images/profile-1.png">
                     </div>
-                    <div class="button-field">
-                        <input type="file" id="post-image" accept="image/*">
-                        <button type="submit">Post</button>
+                    <div class="create-post-input">
+                       <!-- New Title Input Field -->
+                        <input type="text" placeholder="Title" id="post-title" required />
+
+                        <textarea style="margin-top: 0.3cm;" placeholder="What's on your mind?" rows="5" class="create-post" id="post-content" required></textarea>
+                        <input type="file" id="post-image" accept="image/*" style="display:none;" />
+                        
+                        <div class="create-post-buttons">
+                            <button id="postButton" type="submit" class="btn btn-primary">Post</button>
+                            <button id="addImageButton" class="btn btn-secondary">Add Picture</button>
+                            <span id="uploadedFileName"></span>
+                        </div>
                     </div>
                 </form>
                 
-                <div id="posts-container">
-                    <!-- Posts will be dynamically loaded here -->
-                </div>
-                
-                <!-- Existing Feeds Section -->
+                <div id="postContainer"></div>                          
+
+                <!-- Static Feeds Section -->
                 <div class="feeds">
-                    <!-- Repeat this structure for each feed -->
                     <div class="feed">
                         <div class="head">
                             <div class="user">
                                 <div class="profile-photo">
-                                    <img src="../assets/images/profile-1.png" >
+                                    <img src="../assets/images/profile-1.png">
                                 </div>
                                 <div class="ingo">
                                     <h3>User B</h3>
@@ -133,41 +132,13 @@
                                     <i class="fa-solid fa-ellipsis"></i>
                                 </label>
                                 <div class="dropdown">
-                                    <a href="javascript:void(0)" data-picture-id="${pictureId}" onclick="editPost(this)">Edit Post</a>
-                                    <a href="javascript:void(0)" data-picture-id="${pictureId}" onclick="deletePost(this)">Delete Post</a>
+                                    <a href="javascript:void(0)" onclick="editPost(this)" data-picture-id="${pictureId}">Edit Post</a>
+                                    <a href="javascript:void(0)" onclick="deletePost(this)" data-picture-id="${pictureId}">Delete Post</a>
                                 </div>
-                              </div>
-                              <style>
-              .wrapper {
-                position: relative;
-                text-align: center;
-              }
-              input {
-                opacity: 0;
-                pointer-events: none;
-                touch-action: none;
-              }
-              .dropdown {
-                display: none;
-                width: 250px;
-                position: absolute;
-                top: calc(100% + 10px);
-                flex-direction: column;
-                background-color: white;
-                border: 1px solid rgb(21, 20, 20);
-                font-size: px; /* Change the value as desired */
-                padding: 10px;
-                gap: 7px;
-                right: 0;
-
-              }
-              input:checked ~ .dropdown {
-                display: flex;
-              }
-              </style>
+                            </div>
                         </div>
                         <div class="photo">
-                            <img src="../assets/images/black.jpg">
+                            <img src="../assets/images/bird.jpg">
                         </div>
                         <div class="action-buttons">
                             <div class="interaction-buttons">
@@ -175,27 +146,114 @@
                                 <span><i class="fa-solid fa-comment-dots"></i></span>
                                 <span><i class="fa-solid fa-share-nodes"></i></span>
                             </div>
-                            
                             <div class="bookmark">
                                 <span><i class="fa-solid fa-bookmark"></i></span>
                             </div>
                         </div>
-
                         <div class="caption">
-                            <p><b>User B</b> Caption Here<span class="harsh-tag"> </span></p>
+                            <p><b>User B</b> A blue bird! <span class="harsh-tag"></span></p>
                         </div>
                         <div class="comment-input-wrapper">
                             <textarea placeholder="Write a comment..." class="custom-input comment-input"></textarea>
                             <button class="postCommentBtn">Post</button>
-                          </div>
                         </div>
-                      </div>
-                    <!-- Repeat this structure for each feed -->
+                    </div>
+
+                    <!-- Add more static posts as needed -->
+                    <div class="feeds">
+                        <div class="feed">
+                            <div class="head">
+                                <div class="user">
+                                    <div class="profile-photo">
+                                        <img src="../assets/images/house.jpg">
+                                    </div>
+                                    <div class="ingo">
+                                        <h3>User B</h3>
+                                    </div>
+                                </div>
+                                <div class="wrapper">
+                                    <input id="EditB" type="checkbox">
+                                    <label for="EditB">
+                                        <i class="fa-solid fa-ellipsis"></i>
+                                    </label>
+                                    <div class="dropdown">
+                                        <a href="javascript:void(0)" onclick="editPost(this)" data-picture-id="${pictureId}">Edit Post</a>
+                                        <a href="javascript:void(0)" onclick="deletePost(this)" data-picture-id="${pictureId}">Delete Post</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="photo">
+                                <img src="../assets/images/black.jpg">
+                            </div>
+                            <div class="action-buttons">
+                                <div class="interaction-buttons">
+                                    <span><i class="fa-solid fa-heart"></i></span>
+                                    <span><i class="fa-solid fa-comment-dots"></i></span>
+                                    <span><i class="fa-solid fa-share-nodes"></i></span>
+                                </div>
+                                <div class="bookmark">
+                                    <span><i class="fa-solid fa-bookmark"></i></span>
+                                </div>
+                            </div>
+                            <div class="caption">
+                                <p><b>User B</b> Caption Here<span class="harsh-tag"></span></p>
+                            </div>
+                            <div class="comment-input-wrapper">
+                                <textarea placeholder="Write a comment..." class="custom-input comment-input"></textarea>
+                                <button class="postCommentBtn">Post</button>
+                            </div>
+                        </div>
+
+                        <div class="feeds">
+                            <div class="feed">
+                                <div class="head">
+                                    <div class="user">
+                                        <div class="profile-photo">
+                                            <img src="../assets/images/bird.jpg">
+                                        </div>
+                                        <div class="ingo">
+                                            <h3>User B</h3>
+                                        </div>
+                                    </div>
+                                    <div class="wrapper">
+                                        <input id="EditB" type="checkbox">
+                                        <label for="EditB">
+                                            <i class="fa-solid fa-ellipsis"></i>
+                                        </label>
+                                        <div class="dropdown">
+                                            <a href="javascript:void(0)" onclick="editPost(this)" data-picture-id="${pictureId}">Edit Post</a>
+                                            <a href="javascript:void(0)" onclick="deletePost(this)" data-picture-id="${pictureId}">Delete Post</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="photo">
+                                    <img src="../assets/images/house.jpg">
+                                </div>
+                                <div class="action-buttons">
+                                    <div class="interaction-buttons">
+                                        <span><i class="fa-solid fa-heart"></i></span>
+                                        <span><i class="fa-solid fa-comment-dots"></i></span>
+                                        <span><i class="fa-solid fa-share-nodes"></i></span>
+                                    </div>
+                                    <div class="bookmark">
+                                        <span><i class="fa-solid fa-bookmark"></i></span>
+                                    </div>
+                                </div>
+                                <div class="caption">
+                                    <p><b>User B</b> Caption Here<span class="harsh-tag"></span></p>
+                                </div>
+                                <div class="comment-input-wrapper">
+                                    <textarea placeholder="Write a comment..." class="custom-input comment-input"></textarea>
+                                    <button class="postCommentBtn">Post</button>
+                                </div>
+                            </div>
+
+
                 </div>
             </div>
         </div>
     </main>
-    
+
     <script src="../assets/js/app.js"></script>
     <script type="module" src="../assets/js/index.js"></script>
     <script type="module" src="../assets/js/search.js"></script>

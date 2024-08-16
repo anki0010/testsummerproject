@@ -416,6 +416,19 @@ main .container .left .profile{
   .middle .create-post .profile-photo {
     margin-right: 1rem;
   }
+
+  .middle .create-post .create-post-input textarea {
+    width: 100%;
+    padding: 2rem;
+    background: transparent;
+    color: var(--color-dark);
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    resize: none;
+    margin-bottom: 0.5rem;
+}
+
   
   .middle .create-post .profile-photo img {
     width: 2.7rem;
